@@ -90,8 +90,8 @@ class MqttHeader {
   }
 
   /// Gets the value of the Mqtt header as a byte array
-  typed.Uint8Buffer headerBytes() {
-    final headerBytes = typed.Uint8Buffer();
+  typed.Uint32Buffer headerBytes() {
+    final headerBytes = typed.Uint32Buffer();
 
     // Build the bytes that make up the header. The first byte is a
     // combination of message type, dup, qos and retain, and the
@@ -115,8 +115,8 @@ class MqttHeader {
   }
 
   /// Reads the length bytes of an MqttHeader from the supplied stream.
-  static typed.Uint8Buffer readLengthBytes(MqttByteBuffer headerStream) {
-    final lengthBytes = typed.Uint8Buffer();
+  static typed.Uint32Buffer readLengthBytes(MqttByteBuffer headerStream) {
+    final lengthBytes = typed.Uint32Buffer();
     // Read until we've got the entire size, or the 4 byte limit is reached
     int sizeByte;
     var byteCount = 0;
@@ -129,8 +129,8 @@ class MqttHeader {
 
   /// Calculates and return the bytes that represent the
   /// remaining length of the message.
-  typed.Uint8Buffer getRemainingLengthBytes() {
-    final lengthBytes = typed.Uint8Buffer();
+  typed.Uint32Buffer getRemainingLengthBytes() {
+    final lengthBytes = typed.Uint32Buffer();
     var payloadCalc = _messageSize;
 
     // Generate a byte array based on the message size, splitting it up into
@@ -149,7 +149,7 @@ class MqttHeader {
 
   /// Calculates the remaining length of an MqttMessage
   /// from the bytes that make up the length.
-  static int calculateLength(typed.Uint8Buffer lengthBytes) {
+  static int calculateLength(typed.Uint32Buffer lengthBytes) {
     var remainingLength = 0;
     var multiplier = 1;
 

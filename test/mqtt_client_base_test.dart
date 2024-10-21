@@ -8,8 +8,8 @@
 library;
 
 import 'dart:async';
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:test/test.dart';
@@ -426,7 +426,7 @@ void main() {
     });
     test('Byte array to ASCII string', () {
       final input = <int>[40, 41, 42, 43];
-      final buff = typed.Uint8Buffer();
+      final buff = typed.Uint32Buffer();
       buff.addAll(input);
       final conv = AsciiPayloadConverter();
       final output = conv.convertFromBytes(buff);
@@ -455,7 +455,7 @@ void main() {
     });
     test('Get string', () {
       final enc = MqttEncoding();
-      final buff = typed.Uint8Buffer(3);
+      final buff = typed.Uint32Buffer(3);
       buff[0] = 'a'.codeUnits[0];
       buff[1] = 'b'.codeUnits[0];
       buff[2] = 'c'.codeUnits[0];
@@ -464,7 +464,7 @@ void main() {
     });
     test('Get char count valid length LSB', () {
       final enc = MqttEncoding();
-      final buff = typed.Uint8Buffer(5);
+      final buff = typed.Uint32Buffer(5);
       buff[0] = 0;
       buff[1] = 3;
       buff[2] = 'a'.codeUnits[0];
@@ -475,7 +475,7 @@ void main() {
     });
     test('Get char count valid length MSB', () {
       final enc = MqttEncoding();
-      final buff = typed.Uint8Buffer(2);
+      final buff = typed.Uint32Buffer(2);
       buff[0] = 0xFF;
       buff[1] = 0xFF;
       final count = enc.getCharCount(buff);
@@ -484,7 +484,7 @@ void main() {
     test('Get char count invalid length', () {
       final enc = MqttEncoding();
       var raised = false;
-      final buff = typed.Uint8Buffer(1);
+      final buff = typed.Uint32Buffer(1);
       buff[0] = 0;
       try {
         final count = enc.getCharCount(buff);
@@ -553,8 +553,8 @@ void main() {
       expect(Protocol.name, MqttClientConstants.mqttV311ProtocolName);
     });
     test('Byte Buffer', () {
-      final uBuff = typed.Uint8Buffer(10);
-      final uBuff1 = typed.Uint8Buffer(10);
+      final uBuff = typed.Uint32Buffer(10);
+      final uBuff1 = typed.Uint32Buffer(10);
       final buff = MqttByteBuffer(uBuff);
       expect(buff.length, 10);
       expect(buff.position, 0);
@@ -582,7 +582,7 @@ void main() {
       expect(buff1.position, 10);
     });
     test('Byte Buffer To String', () {
-      final uBuff = typed.Uint8Buffer();
+      final uBuff = typed.Uint32Buffer();
       final buff = MqttByteBuffer(uBuff);
       expect(buff.toString(), 'null or empty');
       final bytes = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -626,7 +626,7 @@ void main() {
 
     test('Add buffer', () {
       final builder = MqttClientPayloadBuilder();
-      final buffer = typed.Uint8Buffer()..addAll(<int>[1, 2, 3]);
+      final buffer = typed.Uint32Buffer()..addAll(<int>[1, 2, 3]);
       final bl = builder.addBuffer(buffer);
       expect(bl, isNotNull);
       expect(builder.length, 3);

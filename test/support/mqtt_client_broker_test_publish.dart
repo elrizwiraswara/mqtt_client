@@ -5,9 +5,10 @@
  * Copyright :  S.Hamblett
  */
 import 'dart:async';
-import 'package:typed_data/typed_data.dart' as typed;
+
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:typed_data/typed_data.dart' as typed;
 
 Future<int> main() async {
   // Create and connect the client
@@ -23,7 +24,7 @@ Future<int> main() async {
   }
   // Publish a known topic
   const topic = 'Dart/SJH/mqtt_client';
-  final buff = typed.Uint8Buffer(5);
+  final buff = typed.Uint32Buffer(5);
   buff[0] = 'h'.codeUnitAt(0);
   buff[1] = 'e'.codeUnitAt(0);
   buff[2] = 'l'.codeUnitAt(0);

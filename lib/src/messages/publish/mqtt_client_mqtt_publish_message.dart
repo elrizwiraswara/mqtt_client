@@ -57,7 +57,7 @@ class MqttPublishMessage extends MqttMessage {
   }
 
   /// Appends data to publish to the end of the current message payload.
-  MqttPublishMessage publishData(typed.Uint8Buffer data) {
+  MqttPublishMessage publishData(typed.Uint32Buffer data) {
     payload.message.addAll(data);
     return this;
   }

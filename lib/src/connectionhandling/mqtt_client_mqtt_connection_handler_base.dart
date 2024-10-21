@@ -167,7 +167,7 @@ abstract class MqttConnectionHandlerBase implements IMqttConnectionHandler {
     MqttLogger.log('MqttConnectionHandlerBase::sendMessage - ', message);
     if ((connectionStatus.state == MqttConnectionState.connected) ||
         (connectionStatus.state == MqttConnectionState.connecting)) {
-      final buff = typed.Uint8Buffer();
+      final buff = typed.Uint32Buffer();
       final stream = MqttByteBuffer(buff);
       message!.writeTo(stream);
       stream.seek(0);

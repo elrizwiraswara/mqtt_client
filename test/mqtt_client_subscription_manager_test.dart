@@ -8,14 +8,16 @@
 @TestOn('vm')
 library;
 
-import 'dart:io';
 import 'dart:async';
+import 'dart:io';
+
+import 'package:event_bus/event_bus.dart' as events;
+import 'package:mocktail/mocktail.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:test/test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:typed_data/typed_data.dart' as typed;
-import 'package:event_bus/event_bus.dart' as events;
+
 import 'support/mqtt_client_test_connection_handler.dart';
 
 // Mock classes
@@ -467,7 +469,7 @@ void main() {
       // Start listening
       st = subs.subscriptionNotifier.listen(t1);
       // Publish messages on the topic
-      final buff = typed.Uint8Buffer(4);
+      final buff = typed.Uint32Buffer(4);
       buff[0] = 'd'.codeUnitAt(0);
       buff[1] = 'e'.codeUnitAt(0);
       buff[2] = 'a'.codeUnitAt(0);

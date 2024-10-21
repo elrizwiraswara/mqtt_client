@@ -8,9 +8,10 @@
 
 import 'dart:async';
 import 'dart:io';
-import 'package:path/path.dart' as path;
-import 'package:mqtt_client/mqtt_server_client.dart';
+
 import 'package:mqtt_client/mqtt_client.dart';
+import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:path/path.dart' as path;
 import 'package:typed_data/typed_data.dart' as typed;
 
 /// An example of connecting to the google iot-core MQTT bridge server and publishing to a devices topic.
@@ -69,7 +70,7 @@ Future<int> main() async {
   // Publish to the topic you have associated with your device
   const topic = '/devices/dummy-sensor/events';
   // Use a raw buffer here, see MqttClientPayloadBuilder for payload building assistance.
-  final buff = typed.Uint8Buffer(4);
+  final buff = typed.Uint32Buffer(4);
   buff[0] = 'a'.codeUnitAt(0);
   buff[1] = 'b'.codeUnitAt(0);
   buff[2] = 'c'.codeUnitAt(0);

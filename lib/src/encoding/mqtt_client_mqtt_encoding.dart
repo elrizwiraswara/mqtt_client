@@ -16,14 +16,14 @@ part of '../../mqtt_client.dart';
 class MqttEncoding {
   /// Encodes all the characters in the specified string
   /// into a sequence of bytes.
-  typed.Uint8Buffer getBytes(String s) {
+  typed.Uint32Buffer getBytes(String s) {
     _validateString(s);
     final stringConverted = utf8.encoder.convert(s);
     if (stringConverted.length > 65535) {
       throw Exception(
           'MqttUtf8Encoding::toUtf8 -  UTF8 string length is invalid, length is ${stringConverted.length}');
     }
-    final stringBytes = typed.Uint8Buffer();
+    final stringBytes = typed.Uint32Buffer();
     stringBytes.add(stringConverted.length >> 8);
     stringBytes.add(stringConverted.length & 0xFF);
     stringBytes.addAll(stringConverted);
@@ -31,12 +31,12 @@ class MqttEncoding {
   }
 
   /// Decodes the bytes in the specified byte array into a string.
-  String getString(typed.Uint8Buffer bytes) =>
+  String getString(typed.Uint32Buffer bytes) =>
       utf8.decoder.convert(bytes.toList());
 
   ///  When overridden in a derived class, calculates the number of characters
   ///  produced by decoding all the bytes in the specified byte array.
-  int getCharCount(typed.Uint8Buffer bytes) {
+  int getCharCount(typed.Uint32Buffer bytes) {
     if (bytes.length < 2) {
       throw Exception(
           'mqtt_client::MQTTEncoding: Length byte array must comprise 2 bytes');

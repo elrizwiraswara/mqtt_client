@@ -94,7 +94,7 @@ class PublishingManager implements IPublishingManager {
   /// The message identifier assigned to the message.
   @override
   int publish(
-      PublicationTopic topic, MqttQos qualityOfService, typed.Uint8Buffer data,
+      PublicationTopic topic, MqttQos qualityOfService, typed.Uint32Buffer data,
       [bool retain = false]) {
     MqttLogger.log(
         'PublishingManager::publish - entered with topic ${topic.rawTopic}');

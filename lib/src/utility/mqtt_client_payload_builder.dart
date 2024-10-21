@@ -12,19 +12,19 @@ part of '../../mqtt_client.dart';
 class MqttClientPayloadBuilder {
   /// Construction
   MqttClientPayloadBuilder() {
-    _payload = typed.Uint8Buffer();
+    _payload = typed.Uint32Buffer();
   }
 
-  typed.Uint8Buffer? _payload;
+  typed.Uint32Buffer? _payload;
 
   /// Payload
-  typed.Uint8Buffer? get payload => _payload;
+  typed.Uint32Buffer? get payload => _payload;
 
   /// Length
   int get length => _payload!.length;
 
   /// Add a buffer
-  MqttClientPayloadBuilder addBuffer(typed.Uint8Buffer buffer) {
+  MqttClientPayloadBuilder addBuffer(typed.Uint32Buffer buffer) {
     _payload!.addAll(buffer);
     return this;
   }

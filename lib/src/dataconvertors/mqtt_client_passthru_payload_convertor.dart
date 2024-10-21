@@ -8,13 +8,13 @@
 part of '../../mqtt_client.dart';
 
 ///  Acts as a pass through for the raw data without doing any conversion.
-class PassthruPayloadConverter implements PayloadConverter<typed.Uint8Buffer> {
+class PassthruPayloadConverter implements PayloadConverter<typed.Uint32Buffer> {
   /// Processes received data and returns it as a byte array.
   @override
-  typed.Uint8Buffer convertFromBytes(typed.Uint8Buffer messageData) =>
+  typed.Uint32Buffer convertFromBytes(typed.Uint32Buffer messageData) =>
       messageData;
 
   /// Converts sent data from an object graph to a byte array.
   @override
-  typed.Uint8Buffer convertToBytes(typed.Uint8Buffer data) => data;
+  typed.Uint32Buffer convertToBytes(typed.Uint32Buffer data) => data;
 }

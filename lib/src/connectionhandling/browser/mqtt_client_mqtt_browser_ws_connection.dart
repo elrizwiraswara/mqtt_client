@@ -52,7 +52,7 @@ class MqttBrowserWsConnection extends MqttBrowserConnection<WebSocket> {
       final client = WebSocket(uriString, protocols);
       this.client = client;
       client.binaryType = 'arraybuffer';
-      messageStream = MqttByteBuffer(typed.Uint8Buffer());
+      messageStream = MqttByteBuffer(typed.Uint32Buffer());
 
       StreamSubscription<Event>? openEvents;
       StreamSubscription<CloseEvent>? closeEvents;
@@ -124,7 +124,7 @@ class MqttBrowserWsConnection extends MqttBrowserConnection<WebSocket> {
       final client = WebSocket(uriString, protocols);
       this.client = client;
       client.binaryType = 'arraybuffer';
-      messageStream = MqttByteBuffer(typed.Uint8Buffer());
+      messageStream = MqttByteBuffer(typed.Uint32Buffer());
 
       StreamSubscription<Event>? openEvents;
       StreamSubscription<CloseEvent>? closeEvents;

@@ -7,16 +7,17 @@
 
 import 'dart:async';
 import 'dart:io';
-import 'package:typed_data/typed_data.dart' as typed;
-import 'package:mqtt_client/mqtt_client.dart';
 
-typedef MessageHandlerFunction = void Function(typed.Uint8Buffer? message);
+import 'package:mqtt_client/mqtt_client.dart';
+import 'package:typed_data/typed_data.dart' as typed;
+
+typedef MessageHandlerFunction = void Function(typed.Uint32Buffer? message);
 
 /// Helper methods for test message serialization and deserialization
 class MessageSerializationHelper {
   /// Invokes the serialization of a message to get an array of bytes that represent the message.
-  static typed.Uint8Buffer getMessageBytes(MqttMessage msg) {
-    final buff = typed.Uint8Buffer();
+  static typed.Uint32Buffer getMessageBytes(MqttMessage msg) {
+    final buff = typed.Uint32Buffer();
     final ms = MqttByteBuffer(buff);
     msg.writeTo(ms);
     ms.seek(0);
@@ -32,13 +33,13 @@ class MockBrokerWs {
   int port = 8090;
   late MessageHandlerFunction handler;
   MqttByteBuffer? networkstream;
-  typed.Uint8Buffer headerBytes = typed.Uint8Buffer(1);
+  typed.Uint32Buffer headerBytes = typed.Uint32Buffer(1);
   late WebSocket _webSocket;
 
   void _handleMessage(dynamic data) {
     // Listen for incoming data.
     print('MockBrokerWs::data arrived ${data.toString()}');
-    final dataBytesBuff = typed.Uint8Buffer();
+    final dataBytesBuff = typed.Uint32Buffer();
     dataBytesBuff.addAll(data);
     if (networkstream == null) {
       networkstream = MqttByteBuffer(dataBytesBuff);
@@ -110,7 +111,7 @@ class MockBrokerWs {
 Future<void> main(List<String> argv) async {
   final brokerWs = MockBrokerWs();
 
-  void messageHandlerConnect(typed.Uint8Buffer? messageArrived) {
+  void messageHandlerConnect(typed.Uint32Buffer? messageArrived) {
     final ack = MqttConnectAckMessage()
         .withReturnCode(MqttConnectReturnCode.connectionAccepted);
     print('WS Broker - sending connect ack');

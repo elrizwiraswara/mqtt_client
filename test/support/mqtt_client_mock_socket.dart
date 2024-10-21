@@ -93,7 +93,7 @@ class MqttMockSocketSimpleConnect extends MockSocket {
       final ack = MqttConnectAckMessage()
           .withReturnCode(MqttConnectReturnCode.connectionAccepted)
           .withSessionPresent(true);
-      final buff = Uint8Buffer();
+      final buff = Uint32Buffer();
       final ms = MqttByteBuffer(buff);
       ack.writeTo(ms);
       ms.seek(0);
@@ -222,7 +222,7 @@ class MqttMockSocketScenario1 extends MockSocket {
       initial = false;
       final ack = MqttConnectAckMessage()
           .withReturnCode(MqttConnectReturnCode.connectionAccepted);
-      final buff = Uint8Buffer();
+      final buff = Uint32Buffer();
       final ms = MqttByteBuffer(buff);
       ack.writeTo(ms);
       ms.seek(0);
@@ -268,7 +268,7 @@ class MqttMockSocketScenario2 extends MockSocket {
       initial = false;
       final ack = MqttConnectAckMessage()
           .withReturnCode(MqttConnectReturnCode.connectionAccepted);
-      final buff = Uint8Buffer();
+      final buff = Uint32Buffer();
       final ms = MqttByteBuffer(buff);
       ack.writeTo(ms);
       ms.seek(0);
@@ -315,7 +315,7 @@ class MqttMockSocketScenario3 extends MockSocket {
       initial = false;
       final ack = MqttConnectAckMessage()
           .withReturnCode(MqttConnectReturnCode.connectionAccepted);
-      final buff = Uint8Buffer();
+      final buff = Uint32Buffer();
       final ms = MqttByteBuffer(buff);
       ack.writeTo(ms);
       ms.seek(0);
@@ -324,7 +324,7 @@ class MqttMockSocketScenario3 extends MockSocket {
     } else {
       initial = true;
       final pingResp = MqttPingResponseMessage();
-      final buff = Uint8Buffer();
+      final buff = Uint32Buffer();
       final ms = MqttByteBuffer(buff);
       pingResp.writeTo(ms);
       ms.seek(0);

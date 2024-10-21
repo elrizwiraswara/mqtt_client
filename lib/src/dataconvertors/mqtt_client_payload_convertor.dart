@@ -26,8 +26,8 @@ part of '../../mqtt_client.dart';
 ///     supported.
 abstract class PayloadConverter<T> {
   /// Converts received data from a raw byte array to an object graph.
-  T convertFromBytes(typed.Uint8Buffer messageData);
+  T convertFromBytes(typed.Uint32Buffer messageData);
 
   /// Converts sent data from an object graph to a byte array.
-  typed.Uint8Buffer convertToBytes(T data);
+  typed.Uint32Buffer convertToBytes(T data);
 }

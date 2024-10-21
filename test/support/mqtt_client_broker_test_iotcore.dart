@@ -8,8 +8,8 @@
 import 'dart:async';
 
 import 'package:mqtt_client/mqtt_client.dart';
-import 'package:typed_data/typed_data.dart' as typed;
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:typed_data/typed_data.dart' as typed;
 
 Future<int> main() async {
   // Create and connect the client
@@ -38,7 +38,7 @@ Future<int> main() async {
   }
   // Publish a known topic
   const topic = '/devices/dummy-sensor/events';
-  final buff = typed.Uint8Buffer(4);
+  final buff = typed.Uint32Buffer(4);
   buff[0] = 'a'.codeUnitAt(0);
   buff[1] = 'b'.codeUnitAt(0);
   buff[2] = 'c'.codeUnitAt(0);

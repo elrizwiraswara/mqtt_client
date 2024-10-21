@@ -9,11 +9,13 @@
 library;
 
 import 'dart:io';
+
+import 'package:event_bus/event_bus.dart' as events;
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:test/test.dart';
 import 'package:typed_data/typed_data.dart' as typed;
-import 'package:event_bus/event_bus.dart' as events;
+
 import 'support/mqtt_client_mockbroker.dart';
 
 // ignore_for_file: invalid_use_of_protected_member
@@ -77,13 +79,13 @@ void main() {
     test('Successful response WS', () async {
       var expectRequest = 0;
 
-      void messageHandlerConnect(typed.Uint8Buffer? messageArrived) {
+      void messageHandlerConnect(typed.Uint32Buffer? messageArrived) {
         final ack = MqttConnectAckMessage()
             .withReturnCode(MqttConnectReturnCode.connectionAccepted);
         brokerWs.sendMessage(ack);
       }
 
-      void messageHandlerPingRequest(typed.Uint8Buffer? messageArrived) {
+      void messageHandlerPingRequest(typed.Uint32Buffer? messageArrived) {
         final headerStream = MqttByteBuffer(messageArrived);
         final header = MqttHeader.fromByteBuffer(headerStream);
         if (expectRequest <= 3) {

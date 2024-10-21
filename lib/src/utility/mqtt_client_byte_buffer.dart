@@ -16,7 +16,7 @@ class MqttByteBuffer {
 
   /// From a list
   MqttByteBuffer.fromList(List<int> data) {
-    buffer = typed.Uint8Buffer();
+    buffer = typed.Uint32Buffer();
     buffer!.addAll(data);
   }
 
@@ -24,7 +24,7 @@ class MqttByteBuffer {
   int _position = 0;
 
   /// The underlying byte buffer
-  typed.Uint8Buffer? buffer;
+  typed.Uint32Buffer? buffer;
 
   /// Position
   int get position => _position;
@@ -85,16 +85,16 @@ class MqttByteBuffer {
   /// Reads a sequence of bytes from the current
   /// buffer and advances the position within the buffer
   /// by the number of bytes read.
-  typed.Uint8Buffer read(int count) {
+  typed.Uint32Buffer read(int count) {
     if ((length < count) || (_position + count) > length) {
       throw Exception('mqtt_client::ByteBuffer: The buffer did not have '
           'enough bytes for the read operation '
           'length $length, count $count, position $_position, buffer $buffer');
     }
-    final tmp = typed.Uint8Buffer();
+    final tmp = typed.Uint32Buffer();
     tmp.addAll(buffer!.getRange(_position, _position + count));
     _position += count;
-    final tmp2 = typed.Uint8Buffer();
+    final tmp2 = typed.Uint32Buffer();
     tmp2.addAll(tmp);
     return tmp2;
   }
@@ -119,7 +119,7 @@ class MqttByteBuffer {
   /// Writes a sequence of bytes to the current
   /// buffer and advances the position within the buffer by the number of
   /// bytes written.
-  void write(typed.Uint8Buffer? buffer) {
+  void write(typed.Uint32Buffer? buffer) {
     if (this.buffer == null) {
       this.buffer = buffer;
     } else {

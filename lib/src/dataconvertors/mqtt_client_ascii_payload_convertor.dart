@@ -11,16 +11,16 @@ part of '../../mqtt_client.dart';
 class AsciiPayloadConverter implements PayloadConverter<String> {
   /// Processes received data and returns it as a string.
   @override
-  String convertFromBytes(typed.Uint8Buffer messageData) {
+  String convertFromBytes(typed.Uint32Buffer messageData) {
     const decoder = Utf8Decoder();
     return decoder.convert(messageData.toList());
   }
 
   /// Converts sent data from a string to a byte array.
   @override
-  typed.Uint8Buffer convertToBytes(String data) {
+  typed.Uint32Buffer convertToBytes(String data) {
     const encoder = Utf8Encoder();
-    final buff = typed.Uint8Buffer();
+    final buff = typed.Uint32Buffer();
     buff.addAll(encoder.convert(data));
     return buff;
   }

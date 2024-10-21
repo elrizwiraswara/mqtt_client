@@ -425,7 +425,7 @@ class MqttClient {
   /// Raises InvalidTopicException if the topic supplied violates the
   /// MQTT topic format rules.
   int publishMessage(
-      String topic, MqttQos qualityOfService, typed.Uint8Buffer data,
+      String topic, MqttQos qualityOfService, typed.Uint32Buffer data,
       {bool retain = false}) {
     if (connectionHandler?.connectionStatus.state !=
         MqttConnectionState.connected) {

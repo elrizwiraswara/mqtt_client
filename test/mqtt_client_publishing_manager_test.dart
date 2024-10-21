@@ -9,12 +9,14 @@
 library;
 
 import 'dart:io';
+
+import 'package:event_bus/event_bus.dart' as events;
+import 'package:mocktail/mocktail.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:test/test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:typed_data/typed_data.dart' as typed;
-import 'package:event_bus/event_bus.dart' as events;
+
 import 'support/mqtt_client_test_connection_handler.dart';
 
 // ignore_for_file: invalid_use_of_protected_member
@@ -115,7 +117,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       pm.messageIdentifierDispenser.reset();
-      final buff = typed.Uint8Buffer(4);
+      final buff = typed.Uint32Buffer(4);
       buff[0] = 't'.codeUnitAt(0);
       buff[1] = 'e'.codeUnitAt(0);
       buff[2] = 's'.codeUnitAt(0);
@@ -139,7 +141,7 @@ void main() {
       final testCHS = TestConnectionHandlerSend(clientEventBus,
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
-      final buff = typed.Uint8Buffer(4);
+      final buff = typed.Uint32Buffer(4);
       buff[0] = 't'.codeUnitAt(0);
       buff[1] = 'e'.codeUnitAt(0);
       buff[2] = 's'.codeUnitAt(0);
@@ -164,7 +166,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       pm.messageIdentifierDispenser.reset();
-      final buff = typed.Uint8Buffer(4);
+      final buff = typed.Uint32Buffer(4);
       buff[0] = 't'.codeUnitAt(0);
       buff[1] = 'e'.codeUnitAt(0);
       buff[2] = 's'.codeUnitAt(0);
@@ -186,7 +188,7 @@ void main() {
       final testCHS = TestConnectionHandlerSend(clientEventBus,
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
-      final buff = typed.Uint8Buffer(4);
+      final buff = typed.Uint32Buffer(4);
       buff[0] = 't'.codeUnitAt(0);
       buff[1] = 'e'.codeUnitAt(0);
       buff[2] = 's'.codeUnitAt(0);
@@ -203,7 +205,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       pm.messageIdentifierDispenser.reset();
-      final buff = typed.Uint8Buffer(4);
+      final buff = typed.Uint32Buffer(4);
       buff[0] = 't'.codeUnitAt(0);
       buff[1] = 'e'.codeUnitAt(0);
       buff[2] = 's'.codeUnitAt(0);
@@ -221,7 +223,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       pm.messageIdentifierDispenser.reset();
-      final buff = typed.Uint8Buffer(4);
+      final buff = typed.Uint32Buffer(4);
       buff[0] = 't'.codeUnitAt(0);
       buff[1] = 'e'.codeUnitAt(0);
       buff[2] = 's'.codeUnitAt(0);
@@ -244,7 +246,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       const msgId = 1;
-      final data = typed.Uint8Buffer(3);
+      final data = typed.Uint32Buffer(3);
       data[0] = 0;
       data[1] = 1;
       data[2] = 2;
@@ -263,7 +265,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       const msgId = 1;
-      final data = typed.Uint8Buffer(3);
+      final data = typed.Uint32Buffer(3);
       data[0] = 0;
       data[1] = 1;
       data[2] = 2;
@@ -284,7 +286,7 @@ void main() {
       final pm = PublishingManager(testCHS, clientEventBus);
       pm.manuallyAcknowledgeQos1 = true;
       const msgId = 1;
-      final data = typed.Uint8Buffer(3);
+      final data = typed.Uint32Buffer(3);
       data[0] = 0;
       data[1] = 1;
       data[2] = 2;
@@ -305,7 +307,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       const msgId = 1;
-      final data = typed.Uint8Buffer(3);
+      final data = typed.Uint32Buffer(3);
       data[0] = 0;
       data[1] = 1;
       data[2] = 2;
@@ -325,7 +327,7 @@ void main() {
           socketOptions: socketOptions);
       final pm = PublishingManager(testCHS, clientEventBus);
       const msgId = 1;
-      final data = typed.Uint8Buffer(3);
+      final data = typed.Uint32Buffer(3);
       data[0] = 0;
       data[1] = 1;
       data[2] = 2;

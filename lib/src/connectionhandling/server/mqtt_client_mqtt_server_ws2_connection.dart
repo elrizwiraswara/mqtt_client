@@ -145,7 +145,7 @@ class MqttServerWs2Connection extends MqttServerWsConnection {
                   socket, _subscription as StreamSubscription<Uint8List>?),
               serverSide: false);
           readWrapper = ReadWrapper();
-          messageStream = MqttByteBuffer(typed.Uint8Buffer());
+          messageStream = MqttByteBuffer(typed.Uint32Buffer());
           MqttLogger.log('MqttWs2Connection::connect - start listening');
           _startListening();
           completer.complete(MqttClientConnectionStatus()

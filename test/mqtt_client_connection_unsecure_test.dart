@@ -9,12 +9,14 @@
 library;
 
 import 'dart:io';
+
+import 'package:event_bus/event_bus.dart' as events;
+import 'package:mocktail/mocktail.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:test/test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:typed_data/typed_data.dart' as typed;
-import 'package:event_bus/event_bus.dart' as events;
+
 import 'support/mqtt_client_mock_socket.dart';
 
 // Mock classes
@@ -349,7 +351,7 @@ void main() {
         }
         // Publish a known topic
         const topic = 'Dart/SJH/mqtt_client';
-        final buff = typed.Uint8Buffer(5);
+        final buff = typed.Uint32Buffer(5);
         buff[0] = 'h'.codeUnitAt(0);
         buff[1] = 'e'.codeUnitAt(0);
         buff[2] = 'l'.codeUnitAt(0);

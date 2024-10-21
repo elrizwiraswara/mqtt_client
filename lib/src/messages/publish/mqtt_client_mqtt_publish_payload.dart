@@ -11,7 +11,7 @@ part of '../../../mqtt_client.dart';
 class MqttPublishPayload extends MqttPayload {
   /// Initializes a new instance of the MqttPublishPayload class.
   MqttPublishPayload() {
-    message = typed.Uint8Buffer();
+    message = typed.Uint32Buffer();
   }
 
   /// Initializes a new instance of the MqttPublishPayload class.
@@ -27,7 +27,7 @@ class MqttPublishPayload extends MqttPayload {
   MqttPublishVariableHeader? variableHeader;
 
   /// The message that forms the payload of the publish message.
-  late typed.Uint8Buffer message;
+  late typed.Uint32Buffer message;
 
   /// Creates a payload from the specified header stream.
   @override
@@ -55,7 +55,7 @@ class MqttPublishPayload extends MqttPayload {
       'Payload: {${message.length} bytes={${bytesToString(message)}';
 
   /// Converts an array of bytes to a byte string.
-  static String bytesToString(typed.Uint8Buffer message) {
+  static String bytesToString(typed.Uint32Buffer message) {
     final sb = StringBuffer();
     for (final b in message) {
       sb.write('<');
@@ -66,7 +66,7 @@ class MqttPublishPayload extends MqttPayload {
   }
 
   /// Converts an array of bytes to a character string.
-  static String bytesToStringAsString(typed.Uint8Buffer message) {
+  static String bytesToStringAsString(typed.Uint32Buffer message) {
     final sb = StringBuffer();
     message.forEach(sb.writeCharCode);
     return sb.toString();
